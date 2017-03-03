@@ -1,0 +1,42 @@
+<style>
+ul {
+    list-style: none;
+}
+span.added-by {
+     margin-left: 20px;
+     color: #666;
+}
+
+</style>
+
+<h1>Hello, there</h1>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script type='text/javascript'>
+  var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1cAF2l6r86MirdpQOeRZboLT-Sl8JRNbTk-j8UgYXAtY/pubhtml';
+
+  function init() {
+    Tabletop.init( {
+        key: publicSpreadsheetUrl,
+        callback: render,
+        simpleSheet: true
+    } );
+  }
+
+  window.addEventListener('DOMContentLoaded', init);
+
+function render(data){
+    var bookList = document.createElement('ul');
+    data.forEach(function(b){
+        var li = document.createElement('li');
+        li.innerHTML = (
+            b.title +
+            '<span class="added-by">' +
+            b.added_by +
+            '</span>');
+        bookList.appendChild(li);
+    });
+    document.body.appendChild(bookList);
+}
+
+
+</script>
